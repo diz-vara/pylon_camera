@@ -151,14 +151,14 @@ bool PylonCameraNode::initAndRegister()
         ROS_ERROR("Error while trying to open the desired camera!");
         return false;
     }
-
+/*
     if ( !pylon_camera_->applyCamSpecificStartupSettings(pylon_camera_parameter_set_) )
     {
         ROS_ERROR_STREAM("Error while applying the cam specific startup settings "
                 << "(e.g. mtu size for GigE, ...) to the camera!");
         return false;
     }
-
+*/
     return true;
 }
 
