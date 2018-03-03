@@ -139,12 +139,14 @@ bool PylonCameraNode::initAndRegister()
         return false;
     }
 
+
     if ( !pylon_camera_->registerCameraConfiguration() )
     {
         ROS_ERROR_STREAM("Error while registering the camera configuration to "
             << "software-trigger mode!");
         return false;
     }
+
 
     if ( !pylon_camera_->openCamera() )
     {

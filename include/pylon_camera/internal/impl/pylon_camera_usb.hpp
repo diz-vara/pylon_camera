@@ -61,11 +61,16 @@ struct USBCameraTrait
 
 typedef PylonCameraImpl<USBCameraTrait> PylonUSBCamera;
 
+#define DIZ 1
+
+
 template <>
 bool PylonUSBCamera::applyCamSpecificStartupSettings(const PylonCameraParameter& parameters)
 {
     try
     {
+
+#if 0
         // Remove all previous settings (sequencer etc.)
         // Default Setting = Free-Running
         cam_->UserSetSelector.SetValue(Basler_UsbCameraParams::UserSetSelector_Default);
@@ -90,7 +95,7 @@ bool PylonUSBCamera::applyCamSpecificStartupSettings(const PylonCameraParameter&
         // The gain auto function and the exposure auto function can be used at the same time. In this case,
         // however, you must also set the Auto Function Profile feature.
         //  cam_->AutoFunctionProfile.SetValue(Basler_UsbCameraParams::AutoFunctionProfile_MinimizeGain);
-
+#endif
         if ( GenApi::IsAvailable(cam_->BinningHorizontal) &&
              GenApi::IsAvailable(cam_->BinningVertical) )
         {
@@ -152,7 +157,7 @@ bool PylonUSBCamera::setupSequencer(const std::vector<float>& exposure_times,
         cam_->SequencerSetSelector.SetValue(initial_set);
         cam_->SequencerPathSelector.SetValue(0);
         cam_->SequencerSetNext.SetValue(initial_set);
-        cam_->SequencerTriggerSource.SetValue(Basler_UsbCameraParams::SequencerTriggerSource_SoftwareSignal1);
+        cam_->SequencerTriggerSource.SetValue(Basler_UsbCameraParams::SequencerTriggerSource_Line1);
         // advance on Frame Start
         cam_->SequencerPathSelector.SetValue(1);
         cam_->SequencerTriggerSource.SetValue(Basler_UsbCameraParams::SequencerTriggerSource_FrameStart);
